@@ -47,7 +47,7 @@ var inputart = () => {
 
 var sendData = ( art, sub ) => {
     let req = new XMLHttpRequest();
-    req.open("GET","https://marubox.heroku.app/rcvData.php?art="+art+"&sub="+sub );
+    req.open("GET","https://marubox.herokuapp.com/rcvData.php?art="+art+"&sub="+sub );
     req.onreadystatechange = function(){
         if(req.readyState == 4 && req.status == 200 ){
             console.log( "art", art, "sub", sub );
@@ -60,7 +60,7 @@ var sendData = ( art, sub ) => {
 
 var getData = ( sub ) => {
     let req = new XMLHttpRequest();
-    req.open("GET","https://marubox.heroku.app/sendData.php?sub="+sub );
+    req.open("GET","https://marubox.herokuapp.com/sendData.php?sub="+sub );
     req.onreadystatechange = function(){
         if(req.readyState == 4 && req.status == 200 ){
             let res = req.responseText;
