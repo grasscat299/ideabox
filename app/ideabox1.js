@@ -60,7 +60,7 @@ var sendData = ( art, sub ) => {
 
 var getData = ( sub ) => {
     let req = new XMLHttpRequest();
-    req.open("GET","http://marubox.heroku.app/sendData.php?sub="+sub );
+    req.open("GET","https://marubox.heroku.app/sendData.php?sub="+sub );
     req.onreadystatechange = function(){
         if(req.readyState == 4 && req.status == 200 ){
             let res = req.responseText;
