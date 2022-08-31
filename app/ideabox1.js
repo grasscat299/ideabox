@@ -5,16 +5,32 @@ var btn;
 $( function(){
     $( "#commit" ).on( "mousedown", function(){
         let art = $( "#mytextarea" ).val();
-        sendData( art );
+        let a = $( "input[ name=sub ]" );
+        let sub;
+        for( let b = 0; b < a.length; b ++ ){
+            if( a[b].checked ){
+                sub = a[b].value;
+                break;
+            }
+        }
+        sendData( art, sub );
     });
+
+    let radiobtn = $( "input[name=sub]" );
+    for( let target of radiobtn ){
+        target.addEventListener( "change", function(){
+            console.log( "change", target.value );
+            getData( target.value );
+        }, false);
+    }
 });
 
 window.addEventListener( "load",
 function(){
-    getData();
+    getData( "other" );
     p = $( ".p" );
     btn = $( "#commit" )[0];
-    console.log( "btn", btn );
+
 },
 false );
 
@@ -29,21 +45,22 @@ var inputart = () => {
     p = $( ".p");
 }
 
-var sendData = ( art ) => {
+var sendData = ( art, sub ) => {
     let req = new XMLHttpRequest();
-    req.open("GET","https://marubox.herokuapp.com/rcvData.php?art="+art );
+    req.open("GET","https://marubox.heroku.app/rcvData.php?art="+art+"&sub="+sub );
     req.onreadystatechange = function(){
         if(req.readyState == 4 && req.status == 200 ){
-            getData();
+            console.log( "art", art, "sub", sub );
+            getData( sub );
             return;
         }
     };
     req.send();   
 }
 
-var getData = () => {
+var getData = ( sub ) => {
     let req = new XMLHttpRequest();
-    req.open("GET","https://marubox.herokuapp.com/sendData.php" );
+    req.open("GET","http://marubox.heroku.app/sendData.php?sub="+sub );
     req.onreadystatechange = function(){
         if(req.readyState == 4 && req.status == 200 ){
             let res = req.responseText;
