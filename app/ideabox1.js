@@ -16,6 +16,10 @@ $( function(){
         sendData( art, sub );
     });
 
+    $( "#createradiobtn" ).click( function(){
+        createradio( $( "#radiovalue" ).val(), $( "#radioname" ).val() );
+    });
+
     let radiobtn = $( "input[name=sub]" );
     for( let target of radiobtn ){
         target.addEventListener( "change", function(){
@@ -68,6 +72,18 @@ var getData = ( sub ) => {
             showart = res.split( "," );
             inputart();
             return;   
+        }
+    };
+    req.send();
+}
+
+var createradio = (value, name) => {
+    let req = new XMLHttpRequest();
+    req.open("GET","https://marubox.herokuapp.com/createradio.php?title="+value );
+    req.onreadystatechange = function(){
+        if(req.readyState == 4 && req.status == 200 ){
+            console.log( req.responseText );
+            $( "#radioform" ).append( '<input type="radio" name="sub" value="'+value+'">'+name+"</input>" )
         }
     };
     req.send();

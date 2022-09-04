@@ -12,11 +12,16 @@
         </style>
     </head>
     <body>
-        <input type="radio" name="sub" value="other" checked>その他
-        <input type="radio" name="sub" value="math">数学
-        <input type="radio" name="sub" value="English">英語
-        <input type="radio" name="sub" value="kobun">古文
-        <input type="radio" name="sub" value="kanbun">漢文
+        <div id="radioform">
+            <input type="radio" name="sub" value="other" checked>その他
+            <input type="radio" name="sub" value="math">数学
+            <input type="radio" name="sub" value="English">英語
+            <input type="radio" name="sub" value="kobun">古文
+            <input type="radio" name="sub" value="kanbun">漢文
+        </div>
+        value<input type="text" id="radiovalue">
+        name<input type="text" id="radioname">
+        <input type="button" value="add" id="createradiobtn">
         <br>
         <textarea id="mytextarea" rows="10" cols="40"></textarea>
         <br>
